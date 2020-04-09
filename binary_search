@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+void binary_search(int ,int);
+int a[100],m;
+int main()
+{
+    int i,j,l=0,h,n;
+    printf("enter the size of an array: ");
+    scanf("%d",&n);
+    printf("\nenter the value of elements : ");
+    for(i=0;i<n;i++)
+        scanf("%d",&a[i]);
+        /*sorting the array*/
+    for(i=0;i<n;i++)
+    {
+        for(j=i;j<n;j++)
+        {
+            if(a[i]>a[j])
+            {
+                int temp;
+                temp=a[j];
+                a[j]=a[i];
+                a[i]=temp;
+            }
+        }
+    }
+    printf("\nafter sorting:");/*after sorting printing the value of array*/
+    for(i=0;i<n;i++)
+        printf("\n%d ",a[i]);
+    h=n-1;
+     printf("\nenter the element which you wants to find : ");
+    scanf("%d",&m);
+    binary_search(l,h);/*binary search recursively*/
+    return 0;
+}
+void binary_search(int l,int h)
+{
+    int mid;
+    if(l<=h)
+    {
+        mid=(l+h)/2;/*dividing the array in two parts*/
+        if(m==a[mid])
+            printf("\nelement is found : %d",m);
+        else if(m>a[mid])/*divide rule*/
+            binary_search(mid+1,h);
+        else if(m<a[mid])
+            binary_search(l,mid);
+    }
+}
